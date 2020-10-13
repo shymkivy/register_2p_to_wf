@@ -12,6 +12,12 @@ if strcmpi(ext, '.mat')
         if isfield(data, 'fov_data')
             f_reg_add_fov(app, data.fov_data);
         end
+    elseif isfield(data, 'data_all')
+        app.data_all = data.data_all;
+        f_reg_update_dropdown(app);
+        f_reg_update_plot_wf(app);
+        f_reg_update_plot_fov(app);
+        
     else
         messege1 = sprintf('Your database a table of fov_data or wf_data');
         uialert(app.UIFigure, messege1 ,'Warning','Icon','warning');

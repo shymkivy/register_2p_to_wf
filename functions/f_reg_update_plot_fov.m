@@ -9,6 +9,8 @@ if ~isempty(app.FOVimageDropDown.Value)
 
     plot_im = data2.fov_im{current_fov};
     
+    f_reg_set_clim(app);
+    
     if isempty(app.FOV_axes.Children)
         app.fov_axes = imagesc(app.FOV_axes, plot_im); axis(app.FOV_axes, 'tight');
     else
