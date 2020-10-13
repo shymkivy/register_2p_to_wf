@@ -71,6 +71,8 @@ for n_ms = 1:num_mice
     data_all(n_ms).regions(empty_reg) = [];
 end
 
+%h.Children(2).Children.CData
+
 %% save 
 save([save_data_path '\reg_images_db.mat'], 'data_all');
 

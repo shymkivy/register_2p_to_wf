@@ -13,7 +13,12 @@ end
 
 app.data_all(db_wf.mouse_num).regions(reg_num).regions_tforms(n_tform).xy2p = {pt2p_new};
 app.data_all(db_wf.mouse_num).regions(reg_num).regions_tforms(n_tform).xywf = {ptwf_new};
-app.data_all(db_wf.mouse_num).regions(reg_num).regions_tforms(n_tform).tform = fitgeotrans(pt2p_new,ptwf_new,'affine');
+if rank([pt2p_new, ones(size(pt2p_new,1),1)])>=3 && rank([ptwf_new, ones(size(ptwf_new,1),1)])>=3
+    tform1 = fitgeotrans(pt2p_new,ptwf_new,'affine');
+else
+    tform1 = [];
+end
+app.data_all(db_wf.mouse_num).regions(reg_num).regions_tforms(n_tform).tform = tform1;
 
 f_reg_update_plot_wf(app);
 

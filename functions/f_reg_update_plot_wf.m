@@ -1,8 +1,8 @@
 function f_reg_update_plot_wf(app)
 
 if ~isempty(app.WFimageDropDown.Value)
-    current_wf = strcmpi([app.data_all.wf_fname], app.WFimageDropDown.Value);
-    plot_im = app.data_all(current_wf).wf_im{1};
+    db_wf = f_reg_get_current_wf_reg(app);
+    plot_im = db_wf.wf_im{1};
     
     if find([app.ButtonGroup.Buttons.Value]) == 2
         [~, db_reg] = f_reg_get_current_wf_reg(app);
