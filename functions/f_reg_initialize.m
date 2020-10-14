@@ -6,6 +6,9 @@ app.fov_axes.ButtonDownFcn = @(~,~) f_reg_button_down(app, app.fov_axes);
 app.wf_axes = imagesc(app.WF_axes, 0);
 axis(app.WF_axes, 'tight');
 app.wf_axes.ButtonDownFcn = @(~,~) f_reg_button_down(app, app.wf_axes);
+
+app.wf_axes_map = imagesc(app.WF_axes_mapping, 0);
+axis(app.WF_axes_mapping, 'tight');
 %app.im_accepted.ButtonDownFcn = @(~,~) f_cs_button_down(app, app.im_accepted, 'accepted');
 
 % wf_data.mouse_tag = [];

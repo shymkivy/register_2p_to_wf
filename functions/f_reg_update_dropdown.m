@@ -6,6 +6,7 @@ app.WFimageDropDown.Items = [app.data_all.wf_fname];
 if ~isempty(db_wf)
     if numel(db_wf.regions)
         app.RegionDropDown.Items = unique([db_wf.regions.region_name]);
+        
         [~, db_reg] = f_reg_get_current_wf_reg(app);
         if ~isempty(db_reg)
             app.FOVimageDropDown.Items = db_reg.fov_fname;

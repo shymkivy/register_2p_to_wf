@@ -17,10 +17,10 @@ if strcmpi(ext, '.mat')
         f_reg_update_dropdown(app);
         f_reg_update_plot_wf(app);
         f_reg_update_plot_fov(app);
-        
+        f_reg_map_update_panel(app);
+        f_reg_map_update_plot_wf(app)
     else
-        messege1 = sprintf('Your database a table of fov_data or wf_data');
-        uialert(app.UIFigure, messege1 ,'Warning','Icon','warning');
+        f_reg_yell(app, 'Your database a table of fov_data or wf_data');
     end
 end 
 

@@ -12,6 +12,9 @@ mouse_tag_col_name = 'mouse_tag';
 area_tag_col_name = 'area';
 wf_fnames_col_name = 'mapping_wf_frame';
 twop_fnames_col_name = {'mapping_reg_2p_surface', 'mapping_reg_2p_fov'};
+wf_mapping_freq = 'mapping_freq';
+
+remove_pat_title = {'\fontsize{10}diff '};
 
 %%
 AC_data = readtable('C:\Users\rylab_dataPC\Desktop\Yuriy\AC_2p_analysis\AC_data_list.xlsx');
@@ -69,9 +72,28 @@ for n_ms = 1:num_mice
         data_all(n_ms).regions(n_reg).current_tform = '0';
     end
     data_all(n_ms).regions(empty_reg) = [];
+    wf_mapping_fname = unique(AC_data2.(wf_mapping_freq));
+    wf_mapping_fname = wf_mapping_fname(~strcmpi(wf_mapping_fname, ''));
+    data_all(n_ms).wf_mapping_fname = wf_mapping_fname(1);
+    wf_mapping_imlist = f_reg_gen_db_load_spatial_wf([load_data_path, '\', mouse_tags{n_ms}, '\', wf_mapping_fname{1}]);
+    data_all(n_ms).wf_mapping_im = flipud(wf_mapping_imlist(:,1));
+    num_im = numel(wf_mapping_imlist(:,2));
+    
+    titles1 = cell(num_im,1);
+    for n_im = 1:num_im
+        temp_tit = wf_mapping_imlist{n_im,2};
+        for n_pat = 1:numel(remove_pat_title)
+            n_st = strfind(temp_tit, remove_pat_title{n_pat});
+            temp_tit(n_st:numel(remove_pat_title{n_pat})) = [];
+        end
+        titles1{n_im} = temp_tit;
+    end
+    
+    data_all(n_ms).wf_mapping_title = flipud(titles1);
+    
 end
 
-%h.Children(2).Children.CData
+
 
 %% save 
 save([save_data_path '\reg_images_db.mat'], 'data_all');
