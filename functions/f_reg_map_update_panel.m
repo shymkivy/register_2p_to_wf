@@ -10,8 +10,9 @@ for ii = 1:numel(db_wf.wf_mapping_title)
 end
 
 if isfield(db_wf, 'wf_mapping_regions')
+    app.mapping_regions = db_wf.wf_mapping_regions.Properties.VariableNames;
     app.UITableMapping.Data = ([struct2table(data_map1), db_wf.wf_mapping_regions]);
-    app.UITableMapping.ColumnName = [{'Stim type'} app.mapping_regions];
+    app.UITableMapping.ColumnName = [{'Stim type'} db_wf.wf_mapping_regions.Properties.VariableNames];
 else
     app.UITableMapping.Data = struct2table(data_map1);
 end

@@ -4,6 +4,7 @@ if ~isempty(app.WFimageDropDown.Value)
     db_wf = f_reg_get_current_wf_reg(app);
     plot_im = db_wf.wf_im{1};
     
+    
     if find([app.ButtonGroup.Buttons.Value]) == 2
         [~, db_reg] = f_reg_get_current_wf_reg(app);
         if ~strcmpi(db_reg.current_tform, '0')
@@ -13,6 +14,14 @@ if ~isempty(app.WFimageDropDown.Value)
             plot_im = f_apply_tform(tform1, plot_im, im_2p);
         end
     elseif find([app.ButtonGroup.Buttons.Value]) == 3
+        for n_reg = 1:numel(db_wf.regions)
+            db_reg1 = db_wf.regions(n_reg);
+            if numel(db_reg1.regions_tforms)
+                tform1 = db_reg1.regions_tforms(str2double(db_reg1.current_tform)).tform;
+                im_2p = db_reg1.fov_im{1};
+                plot_im = f_apply_tform(tform1, plot_im, im_2p);
+            end
+        end
     end
     
     if isempty(app.WF_axes.Children)
