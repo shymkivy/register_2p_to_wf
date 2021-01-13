@@ -11,6 +11,10 @@ app.wf_axes_map = imagesc(app.WF_axes_mapping, 0);
 axis(app.WF_axes_mapping, 'tight');
 %app.im_accepted.ButtonDownFcn = @(~,~) f_cs_button_down(app, app.im_accepted, 'accepted');
 
+app.imagesDBpathEditField.Value = [app.ops.gui_dir '\' app.ops.database_fname];
+app.tformDBpathEditField.Value = [app.ops.gui_dir '\' app.ops.tform_fname];
+app.SavedataEditField.Value = [app.ops.gui_dir '\' app.ops.save_fname];
+
 % wf_data.mouse_tag = [];
 % wf_data.wf_fname = [];
 % wf_data.wf_im = [];
