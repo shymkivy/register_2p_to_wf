@@ -13,4 +13,6 @@ ops.wf_data_columns = {'wf_fname', 'wf_im'};
 ops.fov_data_columns = {'wf_fname', 'region', 'fov_fname', 'fov_im'};
 
 
+ops.mapping_regions = {'A1', 'A2', 'AAF', 'UF'};
+
 end
