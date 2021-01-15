@@ -1,4 +1,4 @@
-function f_reg_map_point_remove(app)
+function f_reg_align_point_remove(app)
 
 if ~isempty(app.map_pt)
     for n_pt = 1:numel(app.map_pt)

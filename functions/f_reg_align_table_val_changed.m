@@ -1,4 +1,4 @@
-function f_reg_map_table_val_changed(app, event)
+function f_reg_align_table_val_changed(app, event)
 
 n_mouse = strcmpi([app.data_all.wf_fname], app.WFimageDropDownMapping.Value);
 

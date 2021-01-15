@@ -14,10 +14,23 @@ if strcmpi(ext, '.mat')
         end
     elseif isfield(data, 'data_all')
         app.data_all = data.data_all;
+        if ~isfield(app.data_all, 'wf_mapping_regions')
+            temp_reg = array2table(ones(numel(app.data_all(1).wf_mapping_title), numel(app.ops.mapping_regions)));
+            temp_reg.Properties.VariableNames = app.ops.mapping_regions;
+            for n_exp = 1:numel(app.data_all)
+                app.data_all(n_exp).wf_mapping_regions = temp_reg;
+            end
+        end
+        if ~isfield(app.data_all, 'wf_mapping_regions_coords')
+            temp_cell = cell(numel(app.data_all(1).wf_mapping_title), numel(app.ops.mapping_regions));
+            for n_exp = 1:numel(app.data_all)
+                app.data_all(n_exp).wf_mapping_regions_coords = temp_cell;
+            end
+        end
         f_reg_update_dropdown(app);
         f_reg_update_plot_wf(app);
         f_reg_update_plot_fov(app);
-        f_reg_map_update_panel(app);
+        f_reg_align_update_table(app);
         f_reg_map_update_plot_wf(app)
     else
         f_reg_yell(app, 'Your database a table of fov_data or wf_data');

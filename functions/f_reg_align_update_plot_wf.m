@@ -1,4 +1,4 @@
-function f_reg_map_update_plot_wf(app)
+function f_reg_align_update_plot_wf(app)
 
 if ~isempty(app.WFimageDropDownMapping.Value)
     cr_plot = app.current_mapping_plot;

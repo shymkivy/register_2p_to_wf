@@ -1,4 +1,4 @@
-function f_reg_map_region_add(app)
+function f_reg_align_region_add(app)
 
 if ~isempty(app.AddregionEditField.Value)
     if ~sum(strcmpi(app.AddregionEditField.Value, app.mapping_regions))
