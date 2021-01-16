@@ -30,8 +30,10 @@ if strcmpi(ext, '.mat')
         f_reg_update_dropdown(app);
         f_reg_update_plot_wf(app);
         f_reg_update_plot_fov(app);
+        f_reg_align_point_remove(app);
         f_reg_align_update_table(app);
-        f_reg_map_update_plot_wf(app)
+        f_reg_align_update_plot_wf(app);
+        f_reg_align_point_add(app);
     else
         f_reg_yell(app, 'Your database a table of fov_data or wf_data');
     end
