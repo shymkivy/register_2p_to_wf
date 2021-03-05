@@ -1,11 +1,15 @@
+% need to add spatial freqs here
+%%
 clear;
 close all;
 
-addpath('C:\Users\rylab_dataPC\Desktop\Yuriy\register_2p_to_wf');
-addpath('C:\Users\rylab_dataPC\Desktop\Yuriy\register_2p_to_wf\functions');
+pwd2 = fileparts(which('register_2p_to_wf.mlapp'));
+
+addpath(pwd2);
+addpath([pwd2 '\functions']);
 
 load_data_path = 'F:\data\Auditory\mapping_2p_reg_data';
-save_data_path = 'C:\Users\rylab_dataPC\Desktop\Yuriy\register_2p_to_wf';
+save_data_path = pwd2;
 
 mouse_tag_col_name = 'mouse_tag';
 area_tag_col_name = 'area';
@@ -13,7 +17,7 @@ wf_fnames_col_name = 'mapping_wf_frame';
 twop_fnames_col_name = {'mapping_reg_2p_surface', 'mapping_reg_2p_fov'};
 
 %%
-AC_data = readtable('C:\Users\rylab_dataPC\Desktop\Yuriy\AC_2p_analysis\AC_data_list.xlsx');
+AC_data = readtable([pwd2 '\..\AC_2p_analysis\AC_data_list.xlsx']);
 AC_data = AC_data(~isnan(AC_data.im_use_dset),:);
 
 
@@ -37,6 +41,9 @@ wf_fnames = unique(data_table2(:,{'mouse_tag', 'wf_fname'}));
 fov_data = f_reg_load_images(data_table2, load_data_path, 'fov_fname', 'fov_im', 'mouse_tag');
 wf_data = f_reg_load_images(wf_fnames, load_data_path, 'wf_fname', 'wf_im', 'mouse_tag');
 
+% here
+%wf_mapping_imlist = f_reg_gen_db_load_spatial_wf([load_data_path, '\', mouse_tags{n_ms}, '\', wf_mapping_fname{1}]);
+
 %% save 
-save([save_data_path '\reg_images_db.mat'], 'wf_data', 'fov_data');
+save([save_data_path '\reg_images_wf_fov.mat'], 'wf_data', 'fov_data');
 

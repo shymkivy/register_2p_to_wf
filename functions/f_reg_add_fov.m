@@ -24,7 +24,7 @@ for n_dat = 1:num_load_data
     if sum(current_wf)
         r_db = app.data_all(current_wf).regions;
 
-        reg1(1).region_name = temp_data.region;
+        reg1(1).region_name = temp_data.area;
         reg1(1).fov_fname = temp_data.fov_fname;
         reg1(1).fov_im = temp_data.fov_im;
         reg1(1).regions_tforms = {};
@@ -33,11 +33,11 @@ for n_dat = 1:num_load_data
         if isempty(r_db)    % if no regions present
             r_db = reg1;
             changes = changes + 1;
-        elseif ~sum(strcmpi([r_db.region_name], temp_data.region)) % if this region not present
+        elseif ~sum(strcmpi([r_db.region_name], temp_data.area)) % if this region not present
             r_db = [r_db; reg1];
             changes = changes + 1;
         else    % compare fovs
-            current_region = strcmpi([r_db.region_name], temp_data.region);
+            current_region = strcmpi([r_db.region_name], temp_data.area);
             
             fov_exists = sum(strcmpi([r_db(current_region).fov_fname], temp_data.fov_fname));
             if ~fov_exists

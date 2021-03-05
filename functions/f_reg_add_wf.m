@@ -33,6 +33,7 @@ for n_dat = 1:num_load_data
     
     if ~wf_exists
         data1(1).mouse_num = current_mouse_idx;
+        data1(1).mouse_tag = temp_data.mouse_tag;
         data1(1).wf_fname = temp_data.wf_fname;
         data1(1).wf_im = temp_data.wf_im;
         data1(1).regions = {};

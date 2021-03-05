@@ -10,7 +10,7 @@ ops.tform_fname = 'reg_tform_db.mat';
 
 
 ops.wf_data_columns = {'wf_fname', 'wf_im'};
-ops.fov_data_columns = {'wf_fname', 'region', 'fov_fname', 'fov_im'};
+ops.fov_data_columns = {'wf_fname', 'area', 'fov_fname', 'fov_im'};
 
 
 ops.mapping_regions = {'A1', 'A2', 'AAF', 'UF'};

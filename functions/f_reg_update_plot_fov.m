@@ -5,10 +5,13 @@ if ~isempty(app.FOVimageDropDown.Value)
     data1 = app.data_all(current_wf).regions;
     current_region = strcmpi([data1.region_name],app.RegionDropDown.Value);
     data2 = data1(current_region);
-    current_fov = strcmpi([data2.fov_fname],app.FOVimageDropDown.Value);
-
-    plot_im = data2.fov_im{current_fov};
     
+    if strcmpi([data2.fov_fname],app.FOVimageDropDown.Value)
+        plot_im = data2.fov_im;
+    elseif strcmpi([data2.fov_surface_fname],app.FOVimageDropDown.Value)
+        plot_im = data2.fov_surface_im;
+    end
+
     f_reg_set_clim(app);
     
     if isempty(app.FOV_axes.Children)
