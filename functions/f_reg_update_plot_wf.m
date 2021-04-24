@@ -49,6 +49,9 @@ if ~isempty(app.WFimageDropDown.Value)
         app.wf_axes = imagesc(app.WF_axes, plot_im); axis(app.WF_axes, 'tight');
     else
         app.wf_axes.CData = plot_im;
+        [d1, d2] = size(plot_im);
+        app.wf_axes.XData = [1, d1]*12.852;
+        app.wf_axes.YData = [1, d2]*12.852;
     end
 end
 

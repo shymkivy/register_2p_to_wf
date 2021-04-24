@@ -8,12 +8,29 @@ axis(app.WF_axes, 'tight');
 app.wf_axes.ButtonDownFcn = @(~,~) f_reg_button_down(app, app.wf_axes);
 
 app.wf_axes_map = imagesc(app.WF_axes_mapping, 0);
+axis(app.WF_axes_mapping, 'equal');
 axis(app.WF_axes_mapping, 'tight');
 %app.im_accepted.ButtonDownFcn = @(~,~) f_cs_button_down(app, app.im_accepted, 'accepted');
 
-app.imagesDBpathEditField.Value = [app.ops.gui_dir '\' app.ops.database_fname];
-app.tformDBpathEditField.Value = [app.ops.gui_dir '\' app.ops.tform_fname];
-app.SavedataEditField.Value = [app.ops.gui_dir '\' app.ops.save_fname];
+app.DBpathEditField.Value = app.ops.database_path;  %[app.ops.gui_dir '\' app.ops.database_path];
+app.xmlpathEditField.Value = app.ops.xml_path;      %[app.ops.gui_dir '\' app.ops.tform_fname];
+app.SaveDBpathEditField.Value = app.ops.save_path;  %[app.ops.gui_dir '\' app.ops.save_fname];
+
+app.wf_axes_map_mouse = imagesc(app.WF_axes_mapping_mouse, 0);
+hold(app.WF_axes_mapping_mouse, 'on');
+axis(app.WF_axes_mapping_mouse, 'equal');
+
+%% register mouse section
+num_reg = 4;
+app.wf_axes_map_mouse_plt = cell(num_reg,1);
+for n_reg = 1:num_reg
+    app.wf_axes_map_mouse_plt{n_reg} = plot(app.WF_axes_mapping_mouse, 0, 0, 'o', 'LineWidth', 3, 'Color', app.map_pt_colors{n_reg});
+end
+
+for n_reg = 1:num_reg
+    app.wf_axes_map_mouse_plt{n_reg}.XData = [];
+    app.wf_axes_map_mouse_plt{n_reg}.YData = [];
+end
 
 % wf_data.mouse_tag = [];
 % wf_data.wf_fname = [];

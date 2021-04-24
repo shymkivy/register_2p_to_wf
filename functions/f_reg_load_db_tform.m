@@ -1,11 +1,13 @@
 function f_reg_load_db_tform(app)
 
+% obsolete
+
 if isempty(app.data_all)
     messege1 = sprintf('Load images db first');
     uialert(app.UIFigure, messege1 ,'Warning','Icon','warning');
 else
 
-    data_load = load(app.tformDBpathEditField.Value);
+    data_load = load(app.xmlpathEditField.Value);
 
     if isstruct(data_load.tform_data)
         tform_data = struct2table(data_load.tform_data);

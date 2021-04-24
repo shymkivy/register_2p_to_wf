@@ -1,6 +1,6 @@
-function f_reg_load_db_images(app)
+function f_reg_load_data(app)
 
-filepath = app.imagesDBpathEditField.Value;
+filepath = app.DBpathEditField.Value;
 [~,~,ext] = fileparts(filepath);
 
 if strcmpi(ext, '.mat')
@@ -34,9 +34,18 @@ if strcmpi(ext, '.mat')
         f_reg_align_update_table(app);
         f_reg_align_update_plot_wf(app);
         f_reg_align_point_add(app);
+        f_reg_initialize_reg_mouse_tab(app);
     else
         f_reg_yell(app, 'Your database a table of fov_data or wf_data');
     end
-end 
+end
+
+if ~isempty(app.xmlpathEditField.Value)
+   if exist(app.xmlpathEditField.Value, 'file')
+       app.data_xlsx = readtable(app.xmlpathEditField.Value);
+   end
+end
+    
+app.xmlpathEditField.Value
 
 end
