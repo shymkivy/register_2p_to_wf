@@ -1,5 +1,7 @@
 function f_reg_load_FOV_button_pushed(app)
 
+% obsolete
+
 if numel(app.DataTree.Children) < 1
     uialert(app.UIFigure, 'First load widefield frame' ,'Warning','Icon','warning');
 elseif isempty(app.DataTree.SelectedNodes)

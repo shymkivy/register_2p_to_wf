@@ -1,7 +1,17 @@
 function f_reg_load_data(app)
 
+%% first load all AC data descriptions in excel
+if ~isempty(app.xlsxpathEditField.Value)
+   if exist(app.xlsxpathEditField.Value, 'file')
+       warning('OFF', 'MATLAB:table:ModifiedAndSavedVarnames');
+       app.data_xlsx = readtable(app.xlsxpathEditField.Value);
+   end
+end
+
+%% now load database with images and tforms
 filepath = app.DBpathEditField.Value;
 [~,~,ext] = fileparts(filepath);
+
 
 if strcmpi(ext, '.mat')
     data = load(filepath);
@@ -39,13 +49,5 @@ if strcmpi(ext, '.mat')
         f_reg_yell(app, 'Your database a table of fov_data or wf_data');
     end
 end
-
-if ~isempty(app.xmlpathEditField.Value)
-   if exist(app.xmlpathEditField.Value, 'file')
-       app.data_xlsx = readtable(app.xmlpathEditField.Value);
-   end
-end
-    
-app.xmlpathEditField.Value
 
 end

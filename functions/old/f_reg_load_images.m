@@ -1,5 +1,7 @@
 function table_out = f_reg_load_images(table_in, data_dir, fnames_col, image_col_name, mouse_dir_col)
 
+% obsolete
+
 if ~exist('image_col_name', 'var') || isempty(image_col_name)
     image_col_name = 'image';
 end

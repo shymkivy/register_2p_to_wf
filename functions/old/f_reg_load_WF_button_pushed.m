@@ -1,5 +1,7 @@
 function f_reg_load_WF_button_pushed(app)
 
+% obsolete
+
 [~,fname,~] = fileparts(app.WidefieldpathEditField.Value);
 
 file_exists = sum(strcmpi([app.data.data_wf.wf_fname], fname));

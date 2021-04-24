@@ -10,10 +10,12 @@ app.wf_axes.ButtonDownFcn = @(~,~) f_reg_button_down(app, app.wf_axes);
 app.wf_axes_map = imagesc(app.WF_axes_mapping, 0);
 axis(app.WF_axes_mapping, 'equal');
 axis(app.WF_axes_mapping, 'tight');
+xlabel(app.WF_axes,'pixels');
+ylabel(app.WF_axes,'pixels');
 %app.im_accepted.ButtonDownFcn = @(~,~) f_cs_button_down(app, app.im_accepted, 'accepted');
 
 app.DBpathEditField.Value = app.ops.database_path;  %[app.ops.gui_dir '\' app.ops.database_path];
-app.xmlpathEditField.Value = app.ops.xml_path;      %[app.ops.gui_dir '\' app.ops.tform_fname];
+app.xlsxpathEditField.Value = app.ops.xlsx_path;      %[app.ops.gui_dir '\' app.ops.tform_fname];
 app.SaveDBpathEditField.Value = app.ops.save_path;  %[app.ops.gui_dir '\' app.ops.save_fname];
 
 app.wf_axes_map_mouse = imagesc(app.WF_axes_mapping_mouse, 0);

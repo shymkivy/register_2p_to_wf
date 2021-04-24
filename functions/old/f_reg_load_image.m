@@ -1,5 +1,7 @@
 function [image_out, fname] = f_reg_load_image(image_path)
 
+% obsolete
+
 [~,fname ,ext] = fileparts(image_path);
 
 if strcmpi(ext, '.fig')
