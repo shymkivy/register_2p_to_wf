@@ -1,17 +1,23 @@
 function f_reg_initialize(app)
 app.fov_axes = imagesc(app.FOV_axes, 0);
+axis(app.FOV_axes, 'equal');
 axis(app.FOV_axes, 'tight');
+xlabel(app.FOV_axes,'pixels');
+ylabel(app.FOV_axes,'pixels');
 app.fov_axes.ButtonDownFcn = @(~,~) f_reg_button_down(app, app.fov_axes);
 
 app.wf_axes = imagesc(app.WF_axes, 0);
+axis(app.WF_axes, 'equal');
 axis(app.WF_axes, 'tight');
+xlabel(app.WF_axes,'pixels');
+ylabel(app.WF_axes,'pixels');
 app.wf_axes.ButtonDownFcn = @(~,~) f_reg_button_down(app, app.wf_axes);
 
 app.wf_axes_map = imagesc(app.WF_axes_mapping, 0);
 axis(app.WF_axes_mapping, 'equal');
 axis(app.WF_axes_mapping, 'tight');
-xlabel(app.WF_axes,'pixels');
-ylabel(app.WF_axes,'pixels');
+xlabel(app.WF_axes_mapping,'pixels');
+ylabel(app.WF_axes_mapping,'pixels');
 %app.im_accepted.ButtonDownFcn = @(~,~) f_cs_button_down(app, app.im_accepted, 'accepted');
 
 app.DBpathEditField.Value = app.ops.database_path;  %[app.ops.gui_dir '\' app.ops.database_path];

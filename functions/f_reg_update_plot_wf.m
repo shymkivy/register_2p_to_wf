@@ -4,8 +4,6 @@ if ~isempty(app.WFimageDropDown.Value)
     db_wf = f_reg_get_current_wf_reg(app);
     plot_im = db_wf.wf_im{1};
     
-    
-    
     if find([app.ButtonGroup.Buttons.Value]) == 2
         [~, db_reg] = f_reg_get_current_wf_reg(app);
         if ~strcmpi(db_reg.current_tform, '0')
@@ -50,25 +48,16 @@ if ~isempty(app.WFimageDropDown.Value)
         app.wf_axes = imagesc(app.WF_axes, plot_im); axis(app.WF_axes, 'tight');
     end
     
-    % extract pixel size from AC data xlsx
-    idx_var = strcmpi(app.data_xlsx.Properties.VariableNames, 'cam_um_pix');
-    if sum(idx_var)
-        idx_dset = strcmpi(app.data_xlsx.mapping_wf_frame, app.WFimageDropDown.Value);
-        if sum(idx_dset)
-            cam_pix_all = app.data_xlsx(idx_dset,idx_var).Variables;
-        end
-    end
-    
     app.wf_axes.CData = plot_im;
     [d1, d2] = size(plot_im);
-    if numel(cam_pix_all)
-        app.wf_axes.XData = [1, d1]*cam_pix_all(1);
-        app.wf_axes.YData = [1, d2]*cam_pix_all(1);
+    if app.PlotinmicronsCheckBox.Value
+        app.wf_axes.XData = [1, d2]*db_wf.wf_pix_val;
+        app.wf_axes.YData = [1, d1]*db_wf.wf_pix_val;
         xlabel(app.WF_axes,'um');
         ylabel(app.WF_axes,'um');
     else
-        app.wf_axes.XData = [1, d1]*cam_pix_all(1);
-        app.wf_axes.YData = [1, d2]*cam_pix_all(1);
+        app.wf_axes.XData = [1, d2];
+        app.wf_axes.YData = [1, d1];
         xlabel(app.WF_axes,'pixels');
         ylabel(app.WF_axes,'pixels');
     end

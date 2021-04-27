@@ -14,6 +14,10 @@ for n_reg = 1:numel(app.ops.mapping_regions)
         end
         pt_list{n_reg} = images.roi.Point(app.WF_axes_mapping, 'Color', app.map_pt_colors{n_reg}, 'Position',coords1);
         pt_list{n_reg}.Label = app.mapping_regions{n_reg};
+    else
+        if ~isempty(db_wf.wf_mapping_regions_coords{app.current_mapping_plot,n_reg})
+            app.data_all(n_mouse).wf_mapping_regions_coords{app.current_mapping_plot,n_reg} = [];
+        end
     end
 end
 app.map_pt = pt_list;

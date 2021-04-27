@@ -15,9 +15,22 @@ if ~isempty(app.FOVimageDropDown.Value)
     f_reg_set_clim(app);
     
     if isempty(app.FOV_axes.Children)
-        app.fov_axes = imagesc(app.FOV_axes, plot_im); axis(app.FOV_axes, 'tight');
+        app.fov_axes = imagesc(app.FOV_axes, plot_im);
+        axis(app.FOV_axes, 'tight');
+    end
+    
+    app.fov_axes.CData = plot_im;
+    [d1, d2] = size(plot_im);
+    if app.PlotinmicronsCheckBox.Value
+        app.fov_axes.XData = [1, d2]*data2.fov_pix_val/d2;
+        app.fov_axes.YData = [1, d1]*data2.fov_pix_val/d1;
+        xlabel(app.FOV_axes,'um');
+        ylabel(app.FOV_axes,'um');
     else
-        app.fov_axes.CData = plot_im;
+        app.fov_axes.XData = [1, d2];
+        app.fov_axes.YData = [1, d1];
+        xlabel(app.FOV_axes,'pixels');
+        ylabel(app.FOV_axes,'pixels');
     end
 end
 
