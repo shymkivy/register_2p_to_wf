@@ -40,6 +40,7 @@ for n_reg = 1:num_reg
     app.wf_axes_map_mouse_plt{n_reg}.YData = [];
 end
 
+
 % wf_data.mouse_tag = [];
 % wf_data.wf_fname = [];
 % wf_data.wf_im = [];

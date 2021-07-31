@@ -27,16 +27,17 @@ for n_reg = 1:num_reg
         temp_coord = all_coords{n_fr,n_reg};
     end
     
-    if app.RegisteronButton.Value
-        temp_coord2 = current_tform.T' * [temp_coord, ones(size(temp_coord,1),1)]';
-        temp_coord3 = temp_coord2(1:2,:)';
-    else
-        temp_coord3 = temp_coord;
-    end
-    
     if ~isempty(temp_coord)
+        if app.RegisteronButton.Value
+            temp_coord2 = current_tform.T' * [temp_coord, ones(size(temp_coord,1),1)]';
+            temp_coord3 = temp_coord2(1:2,:)';
+        else
+            temp_coord3 = temp_coord;
+        end
+        
         app.wf_axes_map_mouse_plt{n_reg}.XData = temp_coord3(:,1);
         app.wf_axes_map_mouse_plt{n_reg}.YData = temp_coord3(:,2);
+
     else
         app.wf_axes_map_mouse_plt{n_reg}.XData = [];
         app.wf_axes_map_mouse_plt{n_reg}.YData = [];
