@@ -38,7 +38,7 @@ if strcmpi(ext, '.mat')
             end
         end
         
-        idx_var = strcmpi(app.data_xlsx.Properties.VariableNames, 'cam_um_pix');
+        idx_var = strcmpi(app.data_xlsx.Properties.VariableNames, 'cam_um/pix');
         if sum(idx_var)
             for n_exp = 1:numel(app.data_all)
                 idx_dset = strcmpi(app.data_xlsx.mapping_wf_frame, app.data_all(n_exp).wf_fname);

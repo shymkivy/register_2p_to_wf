@@ -35,11 +35,12 @@ for n_reg = 1:num_reg
     app.wf_axes_map_mouse_plt{n_reg} = plot(app.WF_axes_mapping_mouse, 0, 0, 'o', 'LineWidth', 3, 'Color', app.map_pt_colors{n_reg});
 end
 
+app.app_data = struct();
 for n_reg = 1:num_reg
     app.wf_axes_map_mouse_plt{n_reg}.XData = [];
     app.wf_axes_map_mouse_plt{n_reg}.YData = [];
+    app.app_data.graphics{n_reg} = [];
 end
-
 
 % wf_data.mouse_tag = [];
 % wf_data.wf_fname = [];
